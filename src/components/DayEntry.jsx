@@ -28,7 +28,10 @@ const DayEntry = ({ datetime, temp }) => {
 	return (
 		<div
 			key={datetime}
-			style={{ backgroundColor: setBackgroundColor(temp) }}>
+			style={{ 
+				backgroundColor: setBackgroundColor(temp),
+				height: 1px
+			}}>
 			{`${datetime} ${cToF(temp).toPrecision(3)}`}
 		</div>
 	);

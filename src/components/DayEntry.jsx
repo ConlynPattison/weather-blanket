@@ -30,7 +30,7 @@ const DayEntry = ({ datetime, temp }) => {
 			key={datetime}
 			style={{ 
 				backgroundColor: setBackgroundColor(temp),
-				height: 1px
+				height: "2px"
 			}}>
 			{/*`${datetime} ${cToF(temp).toPrecision(3)}`*/}
 		</div>

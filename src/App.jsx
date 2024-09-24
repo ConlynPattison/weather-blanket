@@ -32,6 +32,7 @@ function App() {
 		"#995a2a", // 
 		"#18394b", // 
 		"#643a34", // 
+		"#611b1b",
 		"#231610", // 
 	];
 
@@ -46,6 +47,7 @@ function App() {
 
 	const setBackgroundColor = (tempArg) => {
 		const tempArgF = cToF(tempArg)
+		if (tempArgF >= 75.0) return colorsGabi[7]
 		if (tempArgF >= 71.0) return colorsGabi[6]
 		if (tempArgF >= 66.0) return colorsGabi[5]
 		if (tempArgF >= 61.0) return colorsGabi[4]

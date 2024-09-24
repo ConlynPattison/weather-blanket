@@ -23,7 +23,17 @@ function App() {
 		"#FF1A00",
 		"#FF0D00",
 		"#FF0000"   // Red
-	]
+	];
+
+	const colorsGabi = [
+		"#c2c8b3", // 
+		"#718c8c", // 
+		"#065557", // 
+		"#995a2a", // 
+		"#18394b", // 
+		"#643a34", // 
+		"#231610", // 
+	];
 
 	const fetchJSON = async () => {
 		const data = await fetch("data.json");
@@ -32,10 +42,18 @@ function App() {
 		return jsonData;
 	}
 
+	const cToF = (tempC) => (Number(tempC) * (9.0 / 5.0)) + 32.0
+
 	const setBackgroundColor = (tempArg) => {
-		const tempArgF = (Number(tempArg) * (9.0 / 5.0)) + 32.0
-		const index = Math.floor((tempArgF - 20.0) / 5.0)
-		return colors[index]
+		const tempArgF = cToF(tempArg)
+		if (tempArgF >= 71.0) return colorsGabi[6]
+		if (tempArgF >= 66.0) return colorsGabi[5]
+		if (tempArgF >= 61.0) return colorsGabi[4]
+		if (tempArgF >= 56.0) return colorsGabi[3]
+		if (tempArgF >= 50.0) return colorsGabi[2]
+		if (tempArgF >= 40.0) return colorsGabi[1]
+		return colorsGabi[0]
+
 	}
 
 	useEffect(() => {
@@ -54,7 +72,7 @@ function App() {
 				{
 					data !== null ?
 						data.days.map((day) => {
-							return <div key={day.datetime} style={{ backgroundColor: setBackgroundColor(day.tempmax) }}>{`${day.datetime} ${day.tempmax}`}</div>
+							return <div key={day.datetime} style={{ backgroundColor: setBackgroundColor(day.tempmax) }}>{`${day.datetime} ${cToF(day.tempmax).toPrecision(3)}`}</div>
 						}) :
 						""
 				}

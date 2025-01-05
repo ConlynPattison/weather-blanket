@@ -26,9 +26,23 @@ function App() {
 			<div>
 				{
 					data !== null ?
-						data.days.map((day) => (
-							<DayEntry temp={day.tempmax} datetime={day.datetime} />
-						)) :
+						data.days.map((day) => {
+							const date = new Date(day.datetime)
+							const dayOfMonth = date.getUTCDate();
+							const month = date.getUTCMonth();
+							console.log(dayOfMonth, month)
+							if (dayOfMonth === 1 && month !== 0)
+								return (
+									<>
+										<DayEntry temp={0} datetime={dayOfMonth.toString()} />
+										<DayEntry temp={day.tempmax} datetime={day.datetime} />
+									</>
+								);
+							return (
+								<DayEntry temp={day.tempmax} datetime={day.datetime} />
+							)
+						})
+						:
 						""
 				}
 			</div>
